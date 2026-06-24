@@ -970,7 +970,10 @@ h1 {
   src:
     local("Segoe UI Symbol"),
     url("assets/fonts/staff-clefs.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
   font-display: block;
+  unicode-range: U+266D, U+266F, U+1D11E, U+1D121, U+1D122, U+1D12A, U+1D12B;
 }
 
 .clef-symbol {
@@ -998,9 +1001,11 @@ h1 {
 
 .accidental-symbol {
   fill: var(--ink);
-  font-family: "StaffClefs", "Segoe UI Symbol", Georgia, "Times New Roman", serif;
+  font-family: "StaffClefs", "Segoe UI Symbol", Georgia, "Times New Roman", serif !important;
   font-size: 42px;
-  font-weight: 700;
+  font-style: normal;
+  font-weight: 400;
+  font-synthesis: none;
   dominant-baseline: middle;
   text-anchor: middle;
 }
@@ -1160,8 +1165,11 @@ h1 {
 }
 
 .music-symbol {
-  font-family: "StaffClefs", "Segoe UI Symbol", Georgia, "Times New Roman", serif;
+  font-family: "StaffClefs", "Segoe UI Symbol", Georgia, "Times New Roman", serif !important;
   font-size: 1.75rem;
+  font-style: normal;
+  font-weight: 400;
+  font-synthesis: none;
   transform: translateY(-0.02em);
 }
 
@@ -1932,13 +1940,13 @@ footer {
   }
 
   .guide-bubble p {
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     line-height: 1.05;
   }
 
   .guide-bubble .guide-example {
     margin-top: 0;
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     line-height: 1.05;
   }
 
@@ -2111,6 +2119,12 @@ footer {
 }
 
 @media (max-width: 370px) {
+  .guide-bubble p,
+  .guide-bubble .guide-example {
+    font-size: 0.52rem;
+    line-height: 1.03;
+  }
+
   .mnemonic-card {
     grid-template-columns: 38px minmax(0, 1fr);
     gap: 4px;
