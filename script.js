@@ -310,9 +310,12 @@ function setKeySliderPopoverOpen(isOpen) {
 
 function positionKeySliderPopover() {
   const buttonRect = elements.keyComboButton.getBoundingClientRect();
-  const popoverWidth = window.innerWidth <= 440 ? window.innerWidth - 24 : Math.min(560, window.innerWidth - 36);
+  const isPhone = window.innerWidth <= 440;
+  const margin = isPhone ? 12 : 18;
+  const fallbackWidth = isPhone ? window.innerWidth - margin * 2 : Math.min(560, window.innerWidth - margin * 2);
+  const popoverWidth = Math.min(elements.keySliderPopover.getBoundingClientRect().width || fallbackWidth, window.innerWidth - margin * 2);
   const centerX = buttonRect.left + buttonRect.width / 2;
-  const safeLeft = Math.min(window.innerWidth - 18 - popoverWidth / 2, Math.max(18 + popoverWidth / 2, centerX));
+  const safeLeft = Math.min(window.innerWidth - margin - popoverWidth / 2, Math.max(margin + popoverWidth / 2, centerX));
   elements.keySliderPopover.style.setProperty("--popover-left", `${safeLeft}px`);
   elements.keySliderPopover.style.setProperty("--popover-top", `${buttonRect.bottom + 8}px`);
 }

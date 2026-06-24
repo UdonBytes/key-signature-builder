@@ -1828,10 +1828,10 @@ footer {
   }
 
   .key-slider-popover {
-    --key-label-width: 36px;
-    --key-lane-width: min(330px, calc(100vw - 74px));
+    --key-label-width: 30px;
+    --key-lane-width: min(280px, calc(100vw - 104px));
     width: calc(100vw - 24px);
-    padding-inline: 8px;
+    padding-inline: 6px;
   }
 
   .key-tick-row-label {
