@@ -1504,7 +1504,7 @@ footer {
 
 @media (min-width: 721px) {
   .app-shell {
-    zoom: 0.9;
+    zoom: 0.85;
   }
 }
 
