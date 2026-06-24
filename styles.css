@@ -1874,6 +1874,10 @@ footer {
     font-size: 1.28rem;
   }
 
+  .flat-accidental .accidental-symbol {
+    font-size: 39.9px;
+  }
+
   .step-button {
     min-height: 36px;
     border-radius: 12px;

@@ -593,8 +593,9 @@ function renderClefModeButtons() {
 }
 
 function accidentalSvg(x, y, symbol, label, clef, isGuideHighlight = false) {
+  const accidentalClass = symbol === "\u266d" ? "flat-accidental" : "sharp-accidental";
   return `
-    <g class="accidental-group ${isGuideHighlight ? "guide-highlighted-accidental" : ""}" aria-label="${clef} ${label}">
+    <g class="accidental-group ${accidentalClass} ${isGuideHighlight ? "guide-highlighted-accidental" : ""}" aria-label="${clef} ${label}">
       ${isGuideHighlight ? `<ellipse class="guide-accidental-glow" cx="${x}" cy="${y}" rx="19" ry="24"></ellipse>` : ""}
       <text class="accidental-symbol" x="${x}" y="${y}">${symbol}</text>
     </g>
