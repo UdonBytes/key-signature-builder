@@ -1,0 +1,149 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Key Signature Builder</title>
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("keySignatureBuilderGuideMode");
+          if (saved === null || saved === "true") {
+            document.documentElement.classList.add("guide-mode-start-on");
+          }
+        } catch (error) {
+          document.documentElement.classList.add("guide-mode-start-on");
+        }
+        document.documentElement.classList.add("is-initializing");
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <img class="study-cat" src="assets/cat-study-buddy.png" alt="A cozy cat with donuts and tea" />
+        <p class="eyebrow">Music Theory Tool</p>
+        <h1>Key Signature Builder</h1>
+      </header>
+
+      <main class="builder-card" aria-live="polite">
+        <section class="status-strip" aria-label="Current key signature state">
+          <div>
+            <span class="status-kicker">Current signature</span>
+            <h2 id="stateLabel">0 accidentals</h2>
+          </div>
+          <div class="key-display">
+            <div class="conversion-strip" aria-label="Key conversion shortcuts">
+              <span class="parallel-control">
+                <button class="conversion-chip parallel-chip" type="button" id="parallelButton" aria-expanded="false" aria-controls="parallelPopover">Parallel</button>
+                <div class="parallel-popover" id="parallelPopover" hidden>
+                  <button class="parallel-option" type="button" id="parallelMajorOption">
+                    <span class="parallel-option-detail" id="parallelMajorDetail">Parallel of C Major → C Minor</span>
+                  </button>
+                  <button class="parallel-option" type="button" id="parallelMinorOption">
+                    <span class="parallel-option-detail" id="parallelMinorDetail">Parallel of A Minor → A Major</span>
+                  </button>
+                </div>
+              </span>
+              <button class="conversion-chip enharmonic-chip" type="button" id="enharmonicButton">Enharmonic</button>
+            </div>
+            <button class="key-combo-button" type="button" id="keyComboButton" aria-label="Choose key signature" aria-expanded="false" aria-controls="keySliderPopover">
+              <span class="major-key-pill" id="majorKeyLabel">Major Key: C Major</span>
+              <span class="minor-key-pill" id="minorKeyLabel">Minor Key: A Minor</span>
+              <span class="key-caret" aria-hidden="true"></span>
+            </button>
+            <div class="key-slider-popover" id="keySliderPopover" hidden>
+              <div class="slider-track-row">
+                <span class="slider-track-spacer" aria-hidden="true"></span>
+                <div class="signature-slider" id="signatureSlider" role="slider" tabindex="0" aria-label="Choose key signature from most flats to most sharps" aria-valuemin="-7" aria-valuemax="7" aria-valuenow="0" aria-valuetext="C Major / A Minor">
+                  <div class="signature-slider-track" aria-hidden="true"></div>
+                  <div class="signature-slider-thumb" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="key-tick-grid" id="keyTickGrid" aria-label="Key positions"></div>
+            </div>
+          </div>
+          <div class="phone-relative-guide-slot" id="phoneRelativeGuideSlot"></div>
+          <div class="status-actions">
+            <label class="guide-toggle" for="guideModeToggle">
+              <span>Guide Mode</span>
+              <input class="guide-toggle-input" type="checkbox" id="guideModeToggle" />
+              <span class="guide-toggle-track" aria-hidden="true">
+                <span class="guide-toggle-thumb"></span>
+                <span class="guide-toggle-text guide-off">Off</span>
+                <span class="guide-toggle-text guide-on">On</span>
+              </span>
+            </label>
+            <button class="reset-button" type="button" id="resetSignature">Reset</button>
+          </div>
+        </section>
+
+        <section class="staff-stage" aria-label="Interactive key signature staff">
+          <div class="staff-sidebar">
+            <div class="clef-mode-selector" aria-label="Clef display mode">
+              <span class="clef-mode-title">Clef</span>
+              <button class="clef-mode-button selected" type="button" data-clef-mode="grand">Grand Staff</button>
+              <button class="clef-mode-button" type="button" data-clef-mode="alto">Alto</button>
+              <button class="clef-mode-button" type="button" data-clef-mode="tenor">Tenor</button>
+            </div>
+            <div class="relative-guide" id="relativeGuide" role="button" tabindex="0" hidden aria-label="Toggle relative minor stairs animation" aria-pressed="true">
+              <div class="relative-guide-visual" aria-hidden="true">
+                <div class="relative-steps">
+                  <span class="relative-step step-one">1</span>
+                  <span class="relative-step step-two">2</span>
+                  <span class="relative-step step-three">3</span>
+                </div>
+                <img class="relative-guide-cat" src="assets/relative-key-cat-transparent.png" alt="" />
+              </div>
+              <div class="relative-guide-text">
+                <span class="relative-guide-title">Relative Minor:</span>
+                <span class="relative-guide-steps">↓ 3 Half Steps</span>
+                <strong id="relativeGuideExample">C Major ↓ 3 = A Minor</strong>
+                <span class="relative-guide-hint" id="relativeGuideHint">Tap to pause</span>
+              </div>
+            </div>
+          </div>
+          <svg id="staffSvg" class="staff-svg" viewBox="0 0 760 300" role="img" aria-labelledby="staffTitle staffDesc">
+            <title id="staffTitle">Blank staff for building a key signature</title>
+            <desc id="staffDesc">Treble and bass clef staves where key signature sharps or flats appear in order as the buttons are pressed.</desc>
+            <g class="staff-lines" id="staffLines"></g>
+            <g class="clef-layer" id="clefLayer" aria-hidden="true"></g>
+            <g id="accidentalLayer"></g>
+          </svg>
+          <div class="guide-helper" id="guideHelper" hidden>
+            <img class="guide-cat" src="assets/guide-cat-transparent.png" alt="A small guide cat" />
+            <div class="guide-bubble">
+              <p id="guideMessage"></p>
+              <p class="guide-example" id="guideExample"></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="controls-panel" aria-label="Key signature controls">
+          <div class="accidental-control flat-control" aria-label="Flat controls">
+            <button class="step-button" type="button" id="removeFlat" aria-label="Remove flat">-</button>
+            <span class="control-label" aria-hidden="true">Flat <span class="control-symbol music-symbol">&#9837;</span></span>
+            <button class="step-button" type="button" id="addFlat" aria-label="Add flat">+</button>
+          </div>
+          <div class="accidental-control sharp-control" aria-label="Sharp controls">
+            <button class="step-button" type="button" id="removeSharp" aria-label="Remove sharp">-</button>
+            <span class="control-label" aria-hidden="true">Sharp <span class="control-symbol">#</span></span>
+            <button class="step-button" type="button" id="addSharp" aria-label="Add sharp">+</button>
+          </div>
+        </section>
+
+        <section class="learning-note" aria-label="Key signature order hint">
+          <div class="mnemonic-panel" id="mnemonicPanel"></div>
+        </section>
+      </main>
+
+      <footer>Created by Jane Hong (UdonBytes)</footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
