@@ -115,6 +115,7 @@ const enharmonicPairs = {
 const elements = {
   builderCard: document.querySelector(".builder-card"),
   staffLines: document.querySelector("#staffLines"),
+  staffStage: document.querySelector(".staff-stage"),
   clefLayer: document.querySelector("#clefLayer"),
   accidentalLayer: document.querySelector("#accidentalLayer"),
   staffSvg: document.querySelector("#staffSvg"),
@@ -581,6 +582,9 @@ function renderAccidentals() {
 }
 
 function renderClefModeButtons() {
+  elements.staffStage.classList.toggle("clef-grand", state.clefMode === "grand");
+  elements.staffStage.classList.toggle("clef-alto", state.clefMode === "alto");
+  elements.staffStage.classList.toggle("clef-tenor", state.clefMode === "tenor");
   elements.clefModeButtons.forEach((button) => {
     const isSelected = button.dataset.clefMode === state.clefMode;
     button.classList.toggle("selected", isSelected);

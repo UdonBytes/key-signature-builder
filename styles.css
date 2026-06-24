@@ -948,6 +948,17 @@ h1 {
   transform: translateY(-54px);
 }
 
+@media (min-width: 721px) {
+  .staff-stage .staff-svg {
+    transform: translateY(10px);
+  }
+
+  .staff-stage.guide-active .staff-svg,
+  .guide-mode-start-on .staff-stage .staff-svg {
+    transform: translateY(-14px);
+  }
+}
+
 .staff-line {
   stroke: var(--staff);
   stroke-width: 3;
@@ -1279,7 +1290,7 @@ h1 {
 
 .bead-helper {
   position: absolute;
-  left: calc(10px + 70px + 10px + ((100% - 20px - 70px - 10px) * 4 / 7) - 24px);
+  left: calc(10px + 70px + 10px + ((100% - 20px - 70px - 10px) * 4 / 7) - 29px);
   top: -12px;
   z-index: 4;
   width: 32px;
@@ -1489,6 +1500,12 @@ footer {
   font-size: 0.76rem;
   font-weight: 600;
   text-align: center;
+}
+
+@media (min-width: 721px) {
+  .app-shell {
+    zoom: 0.8;
+  }
 }
 
 @media (min-width: 900px) and (max-height: 820px) {
