@@ -236,6 +236,7 @@ h1 {
 
 .is-initializing .guide-toggle-thumb,
 .is-initializing .guide-toggle-track,
+.is-initializing .key-display,
 .is-initializing .clef-mode-selector,
 .is-initializing .staff-svg,
 .is-initializing .relative-guide {
@@ -1755,6 +1756,10 @@ footer {
 
   .status-strip:has(.guide-toggle-input:not(:checked)) .key-display {
     transform: translateX(64px);
+  }
+
+  .guide-mode-start-on .status-strip .key-display {
+    transform: none;
   }
 
   .status-strip:has(.guide-toggle-input:not(:checked)) .phone-relative-guide-slot {
