@@ -965,9 +965,17 @@ h1 {
   stroke-linecap: round;
 }
 
+@font-face {
+  font-family: "StaffClefs";
+  src:
+    local("Segoe UI Symbol"),
+    url("assets/fonts/staff-clefs.woff") format("woff");
+  font-display: block;
+}
+
 .clef-symbol {
   fill: var(--staff);
-  font-family: "Times New Roman", Georgia, serif;
+  font-family: "StaffClefs", "Segoe UI Symbol", "Times New Roman", Georgia, serif;
   font-weight: 400;
   text-anchor: middle;
 }
