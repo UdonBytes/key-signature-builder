@@ -1749,7 +1749,7 @@ footer {
     align-items: stretch;
     justify-content: center;
     gap: 4px;
-    transform: translateX(14px);
+    transform: translateX(19px);
   }
 
   .conversion-chip {
@@ -1853,7 +1853,7 @@ footer {
     grid-template-columns: 1fr;
     align-items: start;
     overflow: hidden;
-    min-height: 322px;
+    min-height: 252px;
     gap: 8px;
   }
 
@@ -1867,12 +1867,12 @@ footer {
   }
 
   .staff-svg {
-    transform: translateY(-80px);
+    transform: translateY(-30px);
   }
 
   .staff-stage.guide-active .staff-svg,
   .guide-mode-start-on .staff-stage .staff-svg {
-    transform: translateY(-80px);
+    transform: translateY(-30px);
   }
 
   .staff-stage.guide-active .clef-mode-selector,
@@ -1883,7 +1883,8 @@ footer {
   .guide-helper {
     left: 8px;
     right: 8px;
-    bottom: 82px;
+    top: 169px;
+    bottom: auto;
     height: 86px;
   }
 
@@ -2020,7 +2021,7 @@ footer {
   }
 
   .bead-helper {
-    left: calc(6px + 42px + 5px + ((100% - 12px - 42px - 5px) * 4 / 7) - 18px);
+    left: calc(6px + 42px + 5px + ((100% - 12px - 42px - 5px) * 4 / 7) - 9.5px);
     top: -10px;
     width: 28px;
     height: 38px;
@@ -2031,9 +2032,41 @@ footer {
   }
 
   .bead-helper-bubble {
-    max-width: 190px;
-    padding: 6px 8px;
-    font-size: 0.66rem;
+    right: calc(100% - 49px);
+    bottom: 34px;
+    width: 253px;
+    max-width: 253px;
+    padding: 7px 10px;
+    font-size: 0.6rem;
+    line-height: 1.05;
+    white-space: nowrap;
+  }
+
+  .bead-helper-text {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  .bead-helper-bubble::after {
+    right: 34px;
+    top: auto;
+    bottom: -10px;
+    border-top: 11px solid rgba(255, 254, 250, 0.96);
+    border-right: 8px solid transparent;
+    border-bottom: 0;
+    border-left: 8px solid transparent;
+    transform: none;
+  }
+
+  .bead-helper-bubble::before {
+    right: 31px;
+    top: auto;
+    bottom: -14px;
+    border-top: 14px solid rgba(255, 255, 255, 0.9);
+    border-right: 11px solid transparent;
+    border-bottom: 0;
+    border-left: 11px solid transparent;
+    transform: none;
   }
 }
 
