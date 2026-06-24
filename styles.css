@@ -1037,11 +1037,11 @@ h1 {
   width: fit-content;
   max-width: calc(100% - clamp(68px, 9.1vw, 88px) - 8px);
   min-height: 38px;
-  max-height: 44px;
-  display: grid;
+  max-height: 48px;
+  display: flex;
   align-items: center;
-  gap: 2px;
-  padding: 5px 12px;
+  gap: 6px;
+  padding: 6px 14px;
   border: 2px solid rgba(255, 255, 255, 0.88);
   border-radius: 18px;
   background: rgba(255, 254, 250, 0.94);
@@ -1065,17 +1065,17 @@ h1 {
   position: relative;
   margin: 0;
   color: #5c4b63;
-  font-size: 0.62rem;
+  font-size: 0.74rem;
   font-weight: 900;
-  line-height: 1.15;
-  white-space: normal;
+  line-height: 1.05;
+  white-space: nowrap;
 }
 
 .guide-bubble .guide-example {
   margin-top: 0;
   color: var(--leaf);
-  font-size: 0.62rem;
-  white-space: normal;
+  font-size: 0.74rem;
+  white-space: nowrap;
 }
 
 .guide-bubble .guide-example[hidden] {
@@ -1504,7 +1504,7 @@ footer {
 
 @media (min-width: 721px) {
   .app-shell {
-    zoom: 0.8;
+    zoom: 0.9;
   }
 }
 
